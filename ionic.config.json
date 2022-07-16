@@ -1,0 +1,7 @@
+{
+  "name": "vistas_pro",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
