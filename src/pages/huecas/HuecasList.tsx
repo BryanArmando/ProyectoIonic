@@ -3,14 +3,14 @@ import { add, close, pencil } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import ExploreContainer from '../../components/ExploreContainer';
-import Lugar from './Lugar';
-import { removeLugar, saveLugar, searchLugar } from './lugaresApi';
+import Hueca from './Hueca';
+import { removeHueca, saveHueca, searchHueca } from './HuecasApi';
 
 
-const LugaresList: React.FC = () => {
+const HuecasList: React.FC = () => {
 
   const { name } = useParams<{ name: string; }>();
-  const [lugares, setLugares] = useState<Lugar[]>([]);/*inicializacion a un array vacio*/
+  const [huecas, setHuecas] = useState<Hueca[]>([]);/*inicializacion a un array vacio*/
   const history = useHistory();
 
   useEffect(() =>{
@@ -19,20 +19,20 @@ const LugaresList: React.FC = () => {
 
 
   const search = () => {
-    let result = searchLugar();
-    setLugares(result);
+    let result = searchHueca();
+    setHuecas(result);
   }
 
   const remove = (id:String) => {
-    removeLugar(id);
+    removeHueca(id);
     search();
   }
 
-  const addLugar = () =>{
-    history.push('/page/lugares/new');
+  const addHueca = () =>{
+    history.push('/page/huecas/new');
   }
-  const editLugar = (id: string) =>{
-    history.push('/page/lugares/' + id);
+  const editHueca = (id: string) =>{
+    history.push('/page/huecas/' + id);
   }
 
   return (
@@ -56,11 +56,11 @@ const LugaresList: React.FC = () => {
 
     <IonContent>
         <IonCard>
-            <IonTitle> Gestión de lugares turísticos</IonTitle>
+            <IonTitle> Gestión de huecas turísticos</IonTitle>
             <IonItem>
-                <IonButton onClick={addLugar} color="primary" fill="solid" slot='end' size="default">
+                <IonButton onClick={addHueca} color="primary" fill="solid" slot='end' size="default">
                     <IonIcon icon={add} />
-                    Agregar nuevo sitio
+                    Agregar nueva Hueca
                 </IonButton>
             </IonItem>
         <IonGrid className='table'>
@@ -73,20 +73,20 @@ const LugaresList: React.FC = () => {
                 <IonCol>Telefono</IonCol>
                 <IonCol>Acciones</IonCol>
             </IonRow>
-            {lugares.map((lugar: Lugar) =>
+            {huecas.map((hueca: Hueca) =>
                 <IonRow>
-                    <IonCol>{lugar.nombre}</IonCol>
-                    <IonCol>{lugar.ubicacion}</IonCol>
-                    <IonCol>{lugar.servicios}</IonCol>
-                    <IonCol>{lugar.costo}</IonCol>
-                    <IonCol>{lugar.horarios}</IonCol>
-                    <IonCol>{lugar.telefono}</IonCol>
+                    <IonCol>{hueca.nombre}</IonCol>
+                    <IonCol>{hueca.ubicacion}</IonCol>
+                    <IonCol>{hueca.servicios}</IonCol>
+                    <IonCol>{hueca.costo}</IonCol>
+                    <IonCol>{hueca.horarios}</IonCol>
+                    <IonCol>{hueca.telefono}</IonCol>
                     <IonCol>
-                        <IonButton onClick={() => editLugar(String(lugar.id))} color="primary" fill="clear">
+                        <IonButton onClick={() => editHueca(String(hueca.id))} color="primary" fill="clear">
                             <IonIcon icon={pencil} slot="icon-only"/>
                         </IonButton>
                         <IonButton color="danger" fill="clear"
-                        onClick={()=> remove(String(lugar.id))}>
+                        onClick={()=> remove(String(hueca.id))}>
                             <IonIcon icon={close} slot="icon-only"/>
                         </IonButton>
                     </IonCol>
@@ -108,4 +108,4 @@ const LugaresList: React.FC = () => {
   );
 };
 
-export default LugaresList;
+export default HuecasList;

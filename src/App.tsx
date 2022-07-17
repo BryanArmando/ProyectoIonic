@@ -24,6 +24,10 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import LugaresList from './pages/lugares/LugaresList';
 import LugaresEdit from './pages/lugares/lugaresEdit';
+import HuecasList from './pages/huecas/HuecasList';
+import HuecasEdit from './pages/huecas/HuecasEdit';
+import IglesiasList from './pages/Iglesias/IlglesiasList';
+import IglesiasEdit from './pages/Iglesias/IglesiasEdit';
 
 setupIonicReact();
 
@@ -45,6 +49,22 @@ const App: React.FC = () => {
 
             <Route path="/page/lugares/:id" exact={true}>
               <LugaresEdit></LugaresEdit>
+            </Route>
+
+            <Route path="/page/huecas" exact={true}>
+              <HuecasList></HuecasList>
+            </Route>
+
+            <Route path="/page/huecas/:id" exact={true}>
+              <HuecasEdit></HuecasEdit>
+            </Route>
+
+            <Route path="/page/iglesias" exact={true}>
+              <IglesiasList></IglesiasList>
+            </Route>
+
+            <Route path="/page/iglesias/:id" exact={true}>
+              <IglesiasEdit></IglesiasEdit>
             </Route>
 
 

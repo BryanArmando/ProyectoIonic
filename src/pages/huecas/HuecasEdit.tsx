@@ -3,14 +3,14 @@ import { add, checkmark, close, pencil, text } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import ExploreContainer from '../../components/ExploreContainer';
-import Lugar from './Lugar';
-import { removeLugar, saveLugar, searchLugar, searchLugarById } from './lugaresApi';
+import Hueca from './Hueca';
+import { removeHueca, saveHueca, searchHueca, searchHuecaById } from './HuecasApi';
 
 
-const LugaresEdit: React.FC = () => {
+const HuecasEdit: React.FC = () => {
 
   const { name, id } = useParams<{ name: string; id: string }>();
-  const [lugar, setLugar] = useState<Lugar>({});/*inicializacion a un array vacio*/
+  const [hueca, setHueca] = useState<Hueca>({});/*inicializacion a un array vacio*/
   const history = useHistory();
 
 
@@ -21,14 +21,14 @@ const LugaresEdit: React.FC = () => {
 
   const search = () => {
     if(id !== 'new'){
-        let result = searchLugarById(id);
-        setLugar(result);
+        let result = searchHuecaById(id);
+        setHueca(result);
     }
   }
 
   const save = () => {
-    saveLugar(lugar);
-    history.push('/page/lugares')
+    saveHueca(hueca);
+    history.push('/page/huecas')
   }
 
   
@@ -54,20 +54,20 @@ const LugaresEdit: React.FC = () => {
 
     <IonContent>
         <IonCard>
-            <IonTitle>{id === 'new' ? 'Agregar Sitio Turistico' : 'Editar Datos'}</IonTitle>
+            <IonTitle>{id === 'new' ? 'Agregar Nueva Hueca' : 'Editar Datos'}</IonTitle>
             <IonRow>
                 <IonCol>                       
                     <IonItem>
                         <IonLabel position="stacked">Nombre</IonLabel>
-                        <IonInput onIonChange={e => lugar.nombre = String(e.detail.value)} 
-                            value={lugar.nombre}> </IonInput>
+                        <IonInput onIonChange={e => hueca.nombre = String(e.detail.value)} 
+                            value={hueca.nombre}> </IonInput>
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                         <IonLabel position="stacked">Ubicación</IonLabel>
-                        <IonInput onIonChange={e => lugar.ubicacion = String(e.detail.value)} 
-                            value={lugar.ubicacion}> </IonInput>
+                        <IonInput onIonChange={e => hueca.ubicacion = String(e.detail.value)} 
+                            value={hueca.ubicacion}> </IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -75,15 +75,15 @@ const LugaresEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                         <IonLabel position="stacked">Servicios</IonLabel>
-                        <IonInput onIonChange={e => lugar.servicios = String(e.detail.value)} 
-                            value={lugar.servicios}> </IonInput>
+                        <IonInput onIonChange={e => hueca.servicios = String(e.detail.value)} 
+                            value={hueca.servicios}> </IonInput>
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                         <IonLabel position="stacked">Costo</IonLabel>
-                        <IonInput onIonChange={e => lugar.costo = String(e.detail.value)} 
-                            value={lugar.costo}> </IonInput>
+                        <IonInput onIonChange={e => hueca.costo = String(e.detail.value)} 
+                            value={hueca.costo}> </IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -91,15 +91,15 @@ const LugaresEdit: React.FC = () => {
                 <IonCol>
                     <IonItem>
                         <IonLabel position="stacked">Horarios</IonLabel>
-                        <IonInput onIonChange={e => lugar.horarios = String(e.detail.value)} 
-                            value={lugar.horarios}> </IonInput>
+                        <IonInput onIonChange={e => hueca.horarios = String(e.detail.value)} 
+                            value={hueca.horarios}> </IonInput>
                     </IonItem>
                 </IonCol>
                 <IonCol>
                     <IonItem>
                         <IonLabel position="stacked">Telefono</IonLabel>
-                        <IonInput onIonChange={e => lugar.telefono = String(e.detail.value)} 
-                            value={lugar.telefono}> </IonInput>
+                        <IonInput onIonChange={e => hueca.telefono = String(e.detail.value)} 
+                            value={hueca.telefono}> </IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -133,4 +133,4 @@ const LugaresEdit: React.FC = () => {
   );
 };
 
-export default LugaresEdit;
+export default HuecasEdit;

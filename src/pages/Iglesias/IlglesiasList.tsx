@@ -3,14 +3,14 @@ import { add, close, pencil } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import ExploreContainer from '../../components/ExploreContainer';
-import Lugar from './Lugar';
-import { removeLugar, saveLugar, searchLugar } from './lugaresApi';
+import Iglesia from './Iglesia';
+import { removeIglesia, saveIglesia, searchIglesia } from './IglesiasApi';
 
 
-const LugaresList: React.FC = () => {
+const IglesiasList: React.FC = () => {
 
   const { name } = useParams<{ name: string; }>();
-  const [lugares, setLugares] = useState<Lugar[]>([]);/*inicializacion a un array vacio*/
+  const [iglesias, setIglesias] = useState<Iglesia[]>([]);/*inicializacion a un array vacio*/
   const history = useHistory();
 
   useEffect(() =>{
@@ -19,20 +19,20 @@ const LugaresList: React.FC = () => {
 
 
   const search = () => {
-    let result = searchLugar();
-    setLugares(result);
+    let result = searchIglesia();
+    setIglesias(result);
   }
 
   const remove = (id:String) => {
-    removeLugar(id);
+    removeIglesia(id);
     search();
   }
 
-  const addLugar = () =>{
-    history.push('/page/lugares/new');
+  const addIglesia = () =>{
+    history.push('/page/iglesias/new');
   }
-  const editLugar = (id: string) =>{
-    history.push('/page/lugares/' + id);
+  const editIglesia = (id: string) =>{
+    history.push('/page/iglesias/' + id);
   }
 
   return (
@@ -56,11 +56,11 @@ const LugaresList: React.FC = () => {
 
     <IonContent>
         <IonCard>
-            <IonTitle> Gestión de lugares turísticos</IonTitle>
+            <IonTitle> Gestión de iglesias turísticos</IonTitle>
             <IonItem>
-                <IonButton onClick={addLugar} color="primary" fill="solid" slot='end' size="default">
+                <IonButton onClick={addIglesia} color="primary" fill="solid" slot='end' size="default">
                     <IonIcon icon={add} />
-                    Agregar nuevo sitio
+                    Agregar nueva Iglesia
                 </IonButton>
             </IonItem>
         <IonGrid className='table'>
@@ -73,20 +73,20 @@ const LugaresList: React.FC = () => {
                 <IonCol>Telefono</IonCol>
                 <IonCol>Acciones</IonCol>
             </IonRow>
-            {lugares.map((lugar: Lugar) =>
+            {iglesias.map((iglesia: Iglesia) =>
                 <IonRow>
-                    <IonCol>{lugar.nombre}</IonCol>
-                    <IonCol>{lugar.ubicacion}</IonCol>
-                    <IonCol>{lugar.servicios}</IonCol>
-                    <IonCol>{lugar.costo}</IonCol>
-                    <IonCol>{lugar.horarios}</IonCol>
-                    <IonCol>{lugar.telefono}</IonCol>
+                    <IonCol>{iglesia.nombre}</IonCol>
+                    <IonCol>{iglesia.ubicacion}</IonCol>
+                    <IonCol>{iglesia.servicios}</IonCol>
+                    <IonCol>{iglesia.costo}</IonCol>
+                    <IonCol>{iglesia.horarios}</IonCol>
+                    <IonCol>{iglesia.telefono}</IonCol>
                     <IonCol>
-                        <IonButton onClick={() => editLugar(String(lugar.id))} color="primary" fill="clear">
+                        <IonButton onClick={() => editIglesia(String(iglesia.id))} color="primary" fill="clear">
                             <IonIcon icon={pencil} slot="icon-only"/>
                         </IonButton>
                         <IonButton color="danger" fill="clear"
-                        onClick={()=> remove(String(lugar.id))}>
+                        onClick={()=> remove(String(iglesia.id))}>
                             <IonIcon icon={close} slot="icon-only"/>
                         </IonButton>
                     </IonCol>
@@ -108,4 +108,4 @@ const LugaresList: React.FC = () => {
   );
 };
 
-export default LugaresList;
+export default IglesiasList;
